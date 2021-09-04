@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item
+        android:id="@+id/item_sunny"
+        android:icon="@drawable/ic_wb_sunny"
+        android:title="sunny"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/item_favorite"
+        android:icon="@drawable/ic_favorite"
+        android:title="favorite"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/item_settings"
+        android:icon="@drawable/ic_settings"
+        android:title="settings"
+        app:showAsAction="ifRoom" />
+
+</menu>
