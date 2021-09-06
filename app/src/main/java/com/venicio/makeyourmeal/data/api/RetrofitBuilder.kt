@@ -1,5 +1,6 @@
-package com.venicio.makeyourmeal.data
+package com.venicio.makeyourmeal.data.api
 
+import com.venicio.makeyourmeal.data.Constants
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

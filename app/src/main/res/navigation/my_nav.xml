@@ -8,7 +8,16 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.venicio.makeyourmeal.HomeFragment"
+        android:name="com.venicio.makeyourmeal.view.HomeFragment"
         android:label="@string/toolbar_title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_recipiesFragment"
+            app:destination="@id/recipiesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/recipiesFragment"
+        android:name="com.venicio.makeyourmeal.RecipesFragment"
+        android:label="@string/recipes"
+        tools:layout="@layout/fragment_recipes" />
 </navigation>

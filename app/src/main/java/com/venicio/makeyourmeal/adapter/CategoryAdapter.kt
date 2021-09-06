@@ -1,6 +1,7 @@
 package com.venicio.makeyourmeal.adapter
 
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -12,8 +13,22 @@ import com.venicio.makeyourmeal.data.CategoryResponse
 import com.venicio.makeyourmeal.data.CategoryResult
 import com.venicio.makeyourmeal.databinding.ItemListCategoryBinding
 
-class CategoryAdapter(private val listCategory: List<CategoryResponse>) :
+class CategoryAdapter :
     RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
+
+    inner class CategoryViewHolder(private val binding: ItemListCategoryBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+
+        fun bind(categoryResponse: CategoryResponse) {
+            binding.tvCategory.text = listCategory[adapterPosition].strCategory
+            Glide.with(itemView)
+                .load(listCategory[adapterPosition].strCategoryThumb)
+                .into(binding.ivCategory)
+        }
+    }
+
+    private var listCategory = arrayListOf<CategoryResponse>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -31,20 +46,10 @@ class CategoryAdapter(private val listCategory: List<CategoryResponse>) :
     override fun getItemCount() = listCategory.size
 
 
-    inner class CategoryViewHolder(private val binding: ItemListCategoryBinding) :
-        RecyclerView.ViewHolder(binding.root) {
 
-
-            fun bind(categoryResponse: CategoryResponse) {
-                binding.tvCategory.text = listCategory[adapterPosition].strCategory
-                Glide.with(itemView)
-                    .load(listCategory[adapterPosition].strCategoryThumb)
-                    .into(binding.ivCategory)
-
-
-
-            }
-
-
+    @SuppressLint("NotifyDataSetChanged")
+    fun setupRecyclerView(categoriesList: ArrayList<CategoryResponse>){
+        listCategory = categoriesList
+        notifyDataSetChanged()
     }
 }
