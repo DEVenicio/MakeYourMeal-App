@@ -1,8 +1,7 @@
 package com.venicio.makeyourmeal.view
 
-import android.content.ContentValues.TAG
+
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -11,16 +10,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.venicio.makeyourmeal.R
 import com.venicio.makeyourmeal.adapter.CategoryAdapter
-import com.venicio.makeyourmeal.data.CategoryResponse
-import com.venicio.makeyourmeal.data.CategoryResult
 import com.venicio.makeyourmeal.data.api.RetrofitBuilder
 import com.venicio.makeyourmeal.databinding.FragmentHomeBinding
 import com.venicio.makeyourmeal.repository.MealsRepository
 import com.venicio.makeyourmeal.viewmodel.CategoryViewModel
-import kotlinx.coroutines.Dispatchers.Main
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 
 class HomeFragment : Fragment() {
@@ -53,7 +46,7 @@ class HomeFragment : Fragment() {
         return (binding.root)
     }
 
-    override  fun onActivityCreated(savedInstanceState: Bundle?) {
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
         categoryViewModel.init()
@@ -63,14 +56,12 @@ class HomeFragment : Fragment() {
 
     }
 
-
-
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_home,menu)
+        inflater.inflate(R.menu.menu_home, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
 
-    private fun setupRecycler(){
+    private fun setupRecycler() {
         recycler.layoutManager = LinearLayoutManager(context)
         recycler.setHasFixedSize(true)
         recycler.adapter = adapter
@@ -79,18 +70,20 @@ class HomeFragment : Fragment() {
     private fun setupViewModel() {
         categoryViewModel = ViewModelProvider(
             this,
-            CategoryViewModel.CategoryViewModelFactory(mealsRepository = mealsrepository))
+            CategoryViewModel.CategoryViewModelFactory(mealsRepository = mealsrepository)
+        )
             .get(CategoryViewModel::class.java)
 
     }
 
     private fun setupObservers() {
         categoryViewModel.listAllCategoriesLiveData.observe(viewLifecycleOwner, Observer {
+            binding.rvCategory.visibility = View.VISIBLE
+            binding.progressBar.visibility = View.GONE
             adapter.setupRecyclerView(it.categories)
 
         })
     }
-
 }
 
 
