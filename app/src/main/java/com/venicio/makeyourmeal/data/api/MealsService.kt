@@ -1,11 +1,15 @@
 package com.venicio.makeyourmeal.data.api
 
-import com.venicio.makeyourmeal.data.CategoryResult
-import retrofit2.Call
+import com.venicio.makeyourmeal.data.CategoryFoodResult
+import com.venicio.makeyourmeal.data.MealsResult
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface MealsService {
 
     @GET("categories.php")
-    fun getAllCategories() : Call<CategoryResult>
+  suspend  fun getAllCategories() : CategoryFoodResult
+
+    @GET("filter.php")
+   suspend fun getMealsByCategory(@Query("c") category: String) : MealsResult
 }

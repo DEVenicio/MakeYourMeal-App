@@ -1,4 +1,4 @@
-package com.venicio.makeyourmeal.view
+package com.venicio.makeyourmeal.view.ui
 
 
 import android.os.Bundle
@@ -9,18 +9,18 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.venicio.makeyourmeal.R
-import com.venicio.makeyourmeal.adapter.CategoryAdapter
+import com.venicio.makeyourmeal.adapter.HomeCategoryAdapter
 import com.venicio.makeyourmeal.data.api.RetrofitBuilder
 import com.venicio.makeyourmeal.databinding.FragmentHomeBinding
 import com.venicio.makeyourmeal.repository.MealsRepository
-import com.venicio.makeyourmeal.viewmodel.CategoryViewModel
+import com.venicio.makeyourmeal.viewmodel.CategoryFoodViewModel
 
 
 class HomeFragment : Fragment() {
 
-    private lateinit var categoryViewModel: CategoryViewModel
+    private lateinit var categoryFoodViewModel: CategoryFoodViewModel
     private lateinit var binding: FragmentHomeBinding
-    private val adapter by lazy { CategoryAdapter() }
+    private val adapter by lazy { HomeCategoryAdapter() }
     private lateinit var recycler: RecyclerView
     private var getApiInstance = RetrofitBuilder().service
     private var mealsrepository = MealsRepository(getApiInstance)
@@ -32,7 +32,7 @@ class HomeFragment : Fragment() {
 
         recycler = binding.rvCategory
 
-        categoryViewModel = CategoryViewModel(mealsrepository)
+        categoryFoodViewModel = CategoryFoodViewModel(mealsrepository)
 
         setHasOptionsMenu(true)
 
@@ -49,7 +49,6 @@ class HomeFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        categoryViewModel.init()
         setupRecycler()
         setupObservers()
         setupViewModel()
@@ -68,16 +67,16 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupViewModel() {
-        categoryViewModel = ViewModelProvider(
+        categoryFoodViewModel = ViewModelProvider(
             this,
-            CategoryViewModel.CategoryViewModelFactory(mealsRepository = mealsrepository)
+            CategoryFoodViewModel.CategoryViewModelFactory(mealsRepository = mealsrepository)
         )
-            .get(CategoryViewModel::class.java)
+            .get(CategoryFoodViewModel::class.java)
 
     }
 
     private fun setupObservers() {
-        categoryViewModel.listAllCategoriesLiveData.observe(viewLifecycleOwner, Observer {
+        categoryFoodViewModel.listAllCategoriesLiveData.observe(viewLifecycleOwner, Observer {
             binding.rvCategory.visibility = View.VISIBLE
             binding.progressBar.visibility = View.GONE
             adapter.setupRecyclerView(it.categories)

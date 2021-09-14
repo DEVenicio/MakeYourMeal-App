@@ -10,6 +10,8 @@ class MealsRepository(private val service: MealsService) {
 
     suspend fun getAllCategories() = service.getAllCategories()
 
+    suspend fun getMealsByCategory(category: String)  = service.getMealsByCategory(category)
+
 
 
 }

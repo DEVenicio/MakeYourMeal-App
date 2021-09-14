@@ -1,6 +1,6 @@
 package com.venicio.makeyourmeal.data
 
-data class CategoryResponse(
+data class CategoryFoodResponse(
     val idCategory: String,
     val strCategory: String,
     val strCategoryDescription: String,
