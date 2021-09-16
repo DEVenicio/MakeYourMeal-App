@@ -1,13 +1,11 @@
 ## Make Your Meal - App
 
-Aplicativo desenvolvido para consumir a API https://www.themealdb.com/api.php, exibe uma lista de categorias de pratos e ao clicar em cada categoria exibe uma tela de pratos e selecionando o prato irá exibir uma tela com as receitas e ingredientes. <br><br>
+Aplicativo desenvolvido para consumir a API https://www.themealdb.com/api.php, exibe uma lista de categorias de pratos, ao clicar em cada categoria exibe uma tela de pratos e selecionando o prato irá exibir uma tela com as receitas e detalhes. <br><br>
 
 
 
-#### 🚧🚧- App em construção -- 🚧🚧<br><br><br>
 
-
-<img src="https://github.com/DEVenicio/MakeYourMeal-App/blob/master/mym-app.gif" width="400">
+<img src="https://github.com/DEVenicio/MakeYourMeal-App/blob/master/app-mym.gif" width="300">
 
 
 
