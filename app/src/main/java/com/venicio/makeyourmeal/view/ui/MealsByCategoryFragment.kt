@@ -6,17 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.NavArgs
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.venicio.makeyourmeal.R
-import com.venicio.makeyourmeal.adapter.MealsByCategoryAdapter
+import com.venicio.makeyourmeal.view.adapter.MealsByCategoryAdapter
 import com.venicio.makeyourmeal.data.api.RetrofitBuilder
 import com.venicio.makeyourmeal.databinding.FragmentMealsbycategoryBinding
-import com.venicio.makeyourmeal.repository.MealsRepository
+import com.venicio.makeyourmeal.data.repository.MealsRepository
 import com.venicio.makeyourmeal.viewmodel.MealsViewModel
 
 
@@ -50,30 +47,32 @@ class MealsByCategoryFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        setupRecyclerMeals()
-        setupViewModel()
-        setupObservers()
+        setupRecyclerMealsByCategory()
+        setupViewModelMealsByCategory()
+        setupObserversMealsByCategory()
     }
 
 
-    private fun setupRecyclerMeals() {
+    private fun setupRecyclerMealsByCategory() {
         recyclerMeals.layoutManager = LinearLayoutManager(context)
         recyclerMeals.setHasFixedSize(true)
         recyclerMeals.adapter = adapter
     }
 
-    private fun setupViewModel() {
+    private fun setupViewModelMealsByCategory() {
         mealsViewModel = ViewModelProvider(
             this,
-            MealsViewModel.MealsViewModelFactory(mealsRepository = mealsRepository, argumentos = argumentos)
+            MealsViewModel.MealsViewModelFactory(
+                mealsRepository = mealsRepository,
+                argumentos = argumentos
+            )
         )
             .get(MealsViewModel::class.java)
     }
 
-    private fun setupObservers() {
+    private fun setupObserversMealsByCategory() {
         mealsViewModel.mealsLiveData.observe(viewLifecycleOwner, Observer {
             adapter.setupRecyclerMeals(it.meals)
         })
-
     }
 }

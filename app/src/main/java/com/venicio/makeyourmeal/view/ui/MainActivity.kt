@@ -1,4 +1,4 @@
-package com.venicio.makeyourmeal.view
+package com.venicio.makeyourmeal.view.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -27,11 +27,11 @@ class MainActivity : AppCompatActivity() {
         navController = findNavController(R.id.navHostFragment)
         appBarConfiguration = AppBarConfiguration(navController.graph)
 
-        setupActionBarWithNavController(navController,appBarConfiguration)
+        setupActionBarWithNavController(navController, appBarConfiguration)
     }
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp(appBarConfiguration)
-                ||  super.onSupportNavigateUp()
+                || super.onSupportNavigateUp()
     }
 }

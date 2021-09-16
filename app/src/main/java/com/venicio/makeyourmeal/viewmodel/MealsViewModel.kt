@@ -4,15 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.venicio.makeyourmeal.data.Meals
-import com.venicio.makeyourmeal.data.MealsResult
-import com.venicio.makeyourmeal.repository.MealsRepository
-import com.venicio.makeyourmeal.view.ui.MealsByCategoryFragment
+import com.venicio.makeyourmeal.data.model.MealsResult
+import com.venicio.makeyourmeal.data.repository.MealsRepository
 import com.venicio.makeyourmeal.view.ui.MealsByCategoryFragmentArgs
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
-import okhttp3.Dispatcher
 import java.lang.Exception
 
 class MealsViewModel(
@@ -47,12 +44,12 @@ class MealsViewModel(
 
     class MealsViewModelFactory(
         val mealsRepository: MealsRepository,
-       val argumentos: MealsByCategoryFragmentArgs
+        val argumentos: MealsByCategoryFragmentArgs
     ) :
 
         ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            return MealsViewModel(this.mealsRepository, this.argumentos ) as T
+            return MealsViewModel(this.mealsRepository, this.argumentos) as T
         }
     }
 }

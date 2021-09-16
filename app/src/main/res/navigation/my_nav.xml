@@ -26,6 +26,20 @@
         <argument
             android:name="categoryMeals"
             app:argType="string"/>
+        <action
+            android:id="@+id/recipesFragToDetailsFrag"
+            app:destination="@id/recipesDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/recipesDetailsFragment"
+        android:name="com.venicio.makeyourmeal.view.ui.RecipesDetailsFragment"
+        android:label="{nameRecipe}"
+        tools:layout="@layout/fragment_recipes_details">
+        <argument
+            android:name="idRecipes"
+            app:argType="string" />
+        <argument android:name="nameRecipe"
+            app:argType="string" />
     </fragment>
 
 </navigation>

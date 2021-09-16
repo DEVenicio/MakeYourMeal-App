@@ -3,7 +3,7 @@
     <style name="Theme.MakeYourMeal" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">#D61414</item>
-        <item name="colorPrimaryVariant">#FA163A19</item>
+        <item name="colorPrimaryVariant">#245125</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>

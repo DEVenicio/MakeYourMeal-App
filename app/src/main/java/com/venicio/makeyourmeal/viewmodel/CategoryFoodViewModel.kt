@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.venicio.makeyourmeal.data.CategoryFoodResult
-import com.venicio.makeyourmeal.repository.MealsRepository
+import com.venicio.makeyourmeal.data.model.CategoryFoodResult
+import com.venicio.makeyourmeal.data.repository.MealsRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
@@ -17,22 +17,21 @@ class CategoryFoodViewModel(private val mealsRepository: MealsRepository) : View
 
     private var _listAllCategoriesLiveData = MutableLiveData<CategoryFoodResult>()
     val listAllCategoriesLiveData: LiveData<CategoryFoodResult>
-    get() = _listAllCategoriesLiveData
+        get() = _listAllCategoriesLiveData
 
 
     init {
         _listAllCategoriesLiveData
         getAllCategories()
-
     }
 
     private fun getAllCategories() {
         CoroutineScope(IO).launch {
             try {
-              categoryFoodResult  = mealsRepository.getAllCategories()
+                categoryFoodResult = mealsRepository.getAllCategories()
                 _listAllCategoriesLiveData.postValue(categoryFoodResult)
 
-            } catch (e: Exception){
+            } catch (e: Exception) {
 
             }
         }
